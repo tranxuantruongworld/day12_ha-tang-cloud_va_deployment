@@ -107,17 +107,17 @@ python app.py
 
 | Feature | Basic | Advanced | Tại sao quan trọng? |
 |---------|-------|----------|---------------------|
-| Config | Hardcode | Env vars | ... |
-| Health check |  |  | ... |
-| Logging | print() | JSON | ... |
-| Shutdown | Đột ngột | Graceful | ... |
+| Config | Hardcode | Env vars | Bảo mật dữ liệu, dễ dàng thay đổi khi chuyển sang nhiều môi trường khác nhau |
+| Health check |  |  | Không kiểm tra nhanh chóng hệ thống đang hoạt động hay bị crack |
+| Logging | print() | JSON | Lưu lại lịch sử lỗi, dễ dàng truy xuất lỗi |
+| Shutdown | Đột ngột | Graceful | Bảo toàn dữ liệu, tránh treo hệ thống thời gian dài  |
 
 ###  Checkpoint 1
 
-- [ ] Hiểu tại sao hardcode secrets là nguy hiểm
-- [ ] Biết cách dùng environment variables
-- [ ] Hiểu vai trò của health check endpoint
-- [ ] Biết graceful shutdown là gì
+- [x] Hiểu tại sao hardcode secrets là nguy hiểm
+- [x] Biết cách dùng environment variables
+- [x] Hiểu vai trò của health check endpoint
+- [x] Biết graceful shutdown là gì
 
 ---
 
