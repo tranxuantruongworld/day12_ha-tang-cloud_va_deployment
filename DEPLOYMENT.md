@@ -1,0 +1,3 @@
+- [Deployment dashboard](screenshots/dashboard.png)
+- [Service running](screenshots/running.png)
+- [Test results](screenshots/test.png)
