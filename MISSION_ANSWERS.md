@@ -156,7 +156,7 @@ Create a file `DEPLOYMENT.md` with your deployed service information:
 # Deployment Information
 
 ## Public URL
-https://your-agent.railway.app
+https://ai-agent-eenz.onrender.com
 
 ## Platform
 Railway / Render / Cloud Run
@@ -165,16 +165,20 @@ Railway / Render / Cloud Run
 
 ### Health Check
 ```bash
-curl https://your-agent.railway.app/health
+curl https://ai-agent-eenz.onrender.com/health
 # Expected: {"status": "ok"}
 ```
 
 ### API Test (with authentication)
 ```bash
-curl -X POST https://your-agent.railway.app/ask \
-  -H "X-API-Key: YOUR_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"user_id": "test", "question": "Hello"}'
+curl -X 'POST' \
+  'https://ai-agent-eenz.onrender.com/ask?user_id=1' \
+  -H 'accept: application/json' \
+  -H 'x-api-key: secret-key-123' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "question": "hello"
+}'
 ```
 
 ## Environment Variables Set
