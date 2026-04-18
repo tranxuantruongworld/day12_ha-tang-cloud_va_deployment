@@ -22,7 +22,7 @@ Test:
 import os
 
 
-from fastapi import FastAPI, HTTPException, Security, Depends
+from fastapi import FastAPI, HTTPException, Security, Depends,Body
 from fastapi.security.api_key import APIKeyHeader
 import uvicorn
 from utils.mock_llm import ask
@@ -66,10 +66,9 @@ def root():
 
 @app.post("/ask")
 async def ask_agent(
-    question: str,
-    _key: str = Depends(verify_api_key),  # ✅ require auth
+    question: str = Body(..., embed=True),  
+    _key: str = Depends(verify_api_key),
 ):
-    """Protected endpoint — cần X-API-Key header"""
     return {
         "question": question,
         "answer": ask(question),
@@ -86,4 +85,4 @@ if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
     print(f"API Key: {API_KEY}")
     print(f"Test: curl -H 'X-API-Key: {API_KEY}' http://localhost:{port}/ask?question=hello")
-    uvicorn.run(app, host="0.0.0.0", port=port, reload=True)
+    uvicorn.run(app="app:app", host="0.0.0.0", port=port, reload=True)

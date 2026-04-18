@@ -136,6 +136,7 @@ async def chat(body: ChatRequest):
     # Tạo hoặc dùng session hiện có
     session_id = body.session_id or str(uuid.uuid4())
 
+    
     # Thêm câu hỏi vào history
     append_to_history(session_id, "user", body.question)
 
@@ -217,4 +218,4 @@ def ready():
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port, reload=True)
+    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=True)

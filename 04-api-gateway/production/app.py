@@ -11,17 +11,23 @@ Kết hợp:
 
 Chạy:
     python app.py
-
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHVkZW50Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzY0MjQwODMsImV4cCI6MTc3NjQyNzY4M30.8GporkH6XG9BlivNqYe6HBw1kCToE-WuMe1naDhJ-_E
 Lấy token:
     curl -X POST http://localhost:8000/auth/token \\
          -H "Content-Type: application/json" \\
          -d '{"username": "student", "password": "demo123"}'
+
+    curl.exe -X POST "http://localhost:8000/auth/token" `
+  -H "Content-Type: application/json" `
+  -d "{\`"username\`":\`"student\`",\`"password\`":\`"demo123\`"}"
 
 Dùng token:
     curl -H "Authorization: Bearer <token>" \\
          -X POST http://localhost:8000/ask \\
          -H "Content-Type: application/json" \\
          -d '{"question": "what is docker?"}'
+
+         curl.exe -X POST http://localhost:8000/ask -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d "{\`"question\`": \`"what is docker?\`"}"
 """
 import os
 import time
@@ -81,7 +87,7 @@ async def security_headers(request: Request, call_next):
     response.headers["X-XSS-Protection"] = "1; mode=block"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     # Ẩn server info
-    response.headers.pop("server", None)
+    # response.headers.pop("server", None)
     return response
 
 
@@ -199,4 +205,4 @@ if __name__ == "__main__":
     print("  student / demo123  (10 req/min, $1/day budget)")
     print("  teacher / teach456 (100 req/min, $1/day budget)")
     print(f"\nDocs: http://localhost:{port}/docs\n")
-    uvicorn.run(app, host="0.0.0.0", port=port, reload=True)
+    uvicorn.run(app="app:app", host="0.0.0.0", port=port, reload=True)

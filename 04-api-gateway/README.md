@@ -59,11 +59,17 @@ curl -X POST http://localhost:8000/auth/token \
      -H "Content-Type: application/json" \
      -d '{"username": "student", "password": "demo123"}'
 
+# Nếu bạn dùng PowerShell thì chạy một dòng:
+# curl -X POST http://localhost:8000/auth/token -H "Content-Type: application/json" -d '{"username":"student","password":"demo123"}'
+
 # Dùng token
-curl -H "Authorization: Bearer <token>" \
-     http://localhost:8000/ask \
-     -X POST -H "Content-Type: application/json" \
+curl -H "Authorization: Bearer <token>" \\
+     http://localhost:8000/ask \\
+     -X POST -H "Content-Type: application/json" \\
      -d '{"question": "what is docker?"}'
+
+# PowerShell một dòng:
+# curl -H "Authorization: Bearer <token>" -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d '{"question":"what is docker?"}'
 
 # Test rate limit: spam 20 requests liên tiếp
 python test_advanced.py --test rate-limit
